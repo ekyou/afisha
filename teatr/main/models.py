@@ -42,7 +42,7 @@ class Concert(models.Model):
     type = models.ForeignKey('Type', on_delete=models.PROTECT)
     janr = models.ForeignKey('Janr', blank=True, null=True, on_delete=models.PROTECT)
     regisser = models.ForeignKey('Regisser', blank=True, null=True, on_delete=models.PROTECT)
-    date_time = models.ForeignKey('Time', on_delete=models.PROTECT, blank=True, null=True)
+    date_time = models.ForeignKey('Time', on_delete=models.PROTECT)
     img = models.ImageField(upload_to='photo/', blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
 
