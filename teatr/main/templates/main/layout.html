@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/mainSite.css' %}">
+    {% block css %}{% endblock %}
+    <script src="{% static 'main/js/jquery-3.7.1.min.js' %}" defer></script>
+    {% block js %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+    <body class="body-style">
+        <header>
+            <nav class="nav">
+                <div class="nav-left">
+                    <a href="{% url 'home' %}">Театр</a>
+                </div>
+                <div class="nav-right">
+                    <a href="{% url 'afisha' %}">Афиша</a>
+                    <a href="">Билеты</a>
+                    <a href="{% url 'contacts' %}">Контакты</a>
+                </div>
+            </nav>
+        </header>
+            {% block navigation %}
+            {% endblock %}
+        <div class="container">
+            <div class="text-overlay {% block zal %}{% endblock %}">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+        <img class="image-section" src="{% static 'main/image/masces.png' %}" alt="">
+    </body>
+</html>

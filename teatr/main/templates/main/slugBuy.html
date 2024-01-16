@@ -1,0 +1,46 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'main/css/slug.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ name_concert }}
+{% endblock %}
+
+{% block content %}
+    <div class="text-overlay-span">
+        {{ name_concert }}
+    </div>
+    <img src="{{ img.url }}" alt="Картинка" class="image-slug">
+            <div class="description-block">
+                <div class="description">{{ description }}</div>
+                <div class="display-flex-block">
+                    <div class="text-info-slug"> Дата: {{ date_time }}</div>
+                        <div class="text-info-slug">Цена:
+                            {% if price == None %}
+                                Бесплатно
+                            {% else %}
+                                {{ price }}
+                            {% endif %}</div>
+                    </div>
+                <div class="text-info-slug"><a href="{% url 'tickets' show.id %}"><button class="button-style" >Купить билет</button></a></div>
+            </div>
+            <div class="text-info-block">
+                <div class="text-info-slug"> Режиссер:
+                            {% if regisser == None %}
+                                Нет
+                            {% else %}
+                                {{ regisser }}
+                            {% endif %}</div>
+                <div class="text-info-slug"> Жанр:
+                            {% if janr == None %}
+                                Нет
+                            {% else %}
+                                {{ janr }}
+                            {% endif %}</div>
+                <div class="text-info-slug"> Тип: {{ type }}</div>
+            </div>
+{% endblock %}

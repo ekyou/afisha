@@ -1,0 +1,31 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'main/css/afishaBuy.css' %}">
+{% endblock %}
+
+{% block title %}
+Афиша
+{% endblock %}
+
+{% block content %}
+    <div class="text-overlay-span">
+        Афиша
+    </div>
+    {% for el in concert %}
+    <div class="block-afisha">
+        <img src="{{ el.img.url }}" alt="" class="image-afisha-buy">
+        <a class="text-afisha-info-next" href="{% url 'more_info' el.pk %}">{{ el.name_concert }}</a>
+        <div class="text-afisha-info">Цена:
+            {% if el.price == None %}
+                Бесплатно
+            {% else %}
+               {{ el.price }}
+            {% endif %}</div>
+    </div>
+    {% endfor %}
+{% endblock %}
+
+

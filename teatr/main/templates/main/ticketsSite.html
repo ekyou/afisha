@@ -1,0 +1,55 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'main/css/ticketBuy.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'main/js/ticketBuy.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+Билеты
+{% endblock %}
+
+{% block content %}
+    <div class="text-overlay-span">
+        Билеты
+    </div><br>
+        <div>
+            <form method="post" class="display-flex-zal">
+                <div class="text-info-buy">
+                    {% csrf_token %}
+                    {{ form.first_name }}<br>
+                    {{ form.last_name }}<br>
+                    <input class="input-style" type="text" placeholder="Номер карты" name="Карта"><br>
+                    <button class="button-style" type="submit" id="button-buy">Купить</button>
+                </div>
+                <div class="text-info-buy">
+                    <div class="">
+                        {{ form.concert }}
+                    </div>
+                    <div class="">
+                    {% if ticket.price == None %}
+                        <input class="input-style" type="text" value="Бесплатно" readonly>
+                    {% else %}
+                        {{ form.price }}
+                    {% endif %}
+                        {{ form.date_time }}
+                <div class="" id="select-or"></div>
+                </div><br>
+                </div>
+            </form>
+        </div>
+
+    <div class="block-content">
+        <div class='cinemaHall zal1'></div>
+        <div id="block-info" class="block-info"></div>
+    </div>
+{% endblock %}
+
+{% block zal %}
+display-flex-zal
+{% endblock %}
