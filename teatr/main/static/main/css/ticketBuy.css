@@ -60,3 +60,7 @@ button{
 .display-flex-zal{
     display: flex;
 }
+
+.margin-select{
+    margin-left: 50px
+}

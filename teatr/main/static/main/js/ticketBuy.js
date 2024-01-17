@@ -3,6 +3,7 @@ var cinemaHall1 = {
   },
   cinemaHallMap = '';
 var rows = 1;
+var count = 0;
 var rowsHallMap = '';
 var buyButton = document.querySelector(`#button-buy`);
 
@@ -12,7 +13,9 @@ $.each(cinemaHall1.row, function(row, numberOfSeats) {
   for (i = 1; i <= numberOfSeats; i++) {
     cinemaHallRow += '<button class="seat" data-row="' +
       Number(rows) + '" data-seat="' +
-      i + '">&nbsp;</button>';
+      i + '" value="' + count +
+       '">&nbsp;</button>';
+    count += 1
   }
   rowsHallMap = '<div class="rows">' + rows + ' ряд</div>'
   cinemaHallMap += rowsHallMap + cinemaHallRow + rowsHallMap + '<div class="passageBetween">&nbsp;</div>';
@@ -26,10 +29,12 @@ $('.seat').on('click', function() {
   showBaySeat();
 });
 
+$('#id_place').addClass('input-style');
+
 $('.seat').on('click', function(){
-let a = $(this).data().row + ' ряд ' + $(this).data().seat + ' место';
-    $('#select-or').text(a).trigger('change');
-    console.log($(this).data().row + ' ряд ' + $(this).data().seat + ' место')
+let a = $(this).attr("value");
+    $('#id_place').val(a).trigger('change');
+    console.log(a);
 })
 /*$(item).data().row + ' ряд ' + $(item).data().seat + ' место'*/
 function showBaySeat() {

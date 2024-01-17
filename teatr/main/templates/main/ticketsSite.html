@@ -32,13 +32,12 @@
                         {{ form.concert }}
                     </div>
                     <div class="">
-                    {% if ticket.price == None %}
-                        <input class="input-style" type="text" value="Бесплатно" readonly>
-                    {% else %}
-                        {{ form.price }}
-                    {% endif %}
                         {{ form.date_time }}
-                <div class="" id="select-or"></div>
+                        <div class="input-style">
+                        {{ form.place }}
+                        </div>
+                        {{ error }}
+                <div class="margin-select" id="select-or"></div>
                 </div><br>
                 </div>
             </form>

@@ -55,8 +55,6 @@ class Ticket(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     place = models.ForeignKey('Place', on_delete=models.PROTECT)
-    date_time = models.ForeignKey('Time', on_delete=models.PROTECT)
-    price = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.first_name}, {self.last_name}, {self.date_time}"
+        return f"{self.first_name}, {self.last_name}"

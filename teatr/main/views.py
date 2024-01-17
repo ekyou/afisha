@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Concert, Time
 from .form import ticketForm
 
@@ -11,16 +11,24 @@ def afishaSite(request):
     return render(request, 'main/afishaSite.html', {'concert': concert})
 
 def ticketsSite(request, concert_id):
-    ticket = get_object_or_404(Concert, id=concert_id)
-    time = get_object_or_404(Time, id=concert_id)
+    error = ''
+    if request.method == 'POST':
+        form = ticketForm(request.POST)
+        if form.is_valid():
+            form.save()
+            redirect('home')
+        else:
+            error = 'Неверно введены данные'
 
-    form = ticketForm(initial={'concert': ticket.name_concert,
-                               'price': ticket.price,
-                               'date_time': time.date_time})
+    ticket = get_object_or_404(Concert, id=concert_id)
+
+    form = ticketForm(initial={'concert': ticket.id,
+                               'price': ticket.price})
 
     context = {
         'ticket': ticket,
-        'form': form
+        'form': form,
+        'error': error
     }
 
     return render(request, 'main/ticketsSite.html', context=context)
@@ -46,5 +54,3 @@ def showAfisha(request, concert_id):
     }
 
     return render(request, 'main/slugBuy.html', context)
-
-

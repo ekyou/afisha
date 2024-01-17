@@ -1,4 +1,4 @@
-from django.forms import TextInput, DateInput, DateTimeInput, SelectDateWidget
+from django.forms import TextInput, Textarea
 from django.shortcuts import get_object_or_404, render
 
 from .models import *
@@ -6,16 +6,24 @@ from django import forms
 
 class ticketForm(forms.ModelForm):
     model = Ticket
-    date_format = forms.DateField(
-        widget=forms.DateInput(format='%d%m%Y'),
-        input_formats=['%d%m%Y'],
+
+    place = forms.ModelChoiceField(
+        queryset=Place.objects.all()
+    )
+
+    concert = forms.ModelChoiceField(
+        queryset=Concert.objects.all()
     )
 
     class Meta:
+
         model = Ticket
-        fields = ['first_name', 'last_name', 'concert', 'price', 'place']
+        fields = ['first_name', 'last_name', 'concert', 'place']
 
         widgets = {
+            "place": forms.Select(attrs={
+                'class': 'input-style'
+            }),
             "first_name": TextInput(attrs={
                 'class': 'input-style',
                 'placeholder': 'Имя'
@@ -24,28 +32,11 @@ class ticketForm(forms.ModelForm):
                 'class': 'input-style',
                 'placeholder': 'Фамилия'
             }),
-            "concert": TextInput(attrs={
-                'class': 'input-style',
+            "concert": Textarea(attrs={
+                'class': 'input-style no-visible',
                 'placeholder': '',
                 'value': 'ticket.concert_name',
                 'readonly': 'readonly'
-            }),
-            "price": TextInput(attrs={
-                'class': 'input-style',
-                'placeholder': '',
-                'value': 'ticket.price',
-                'readonly': 'readonly'
-            }),
-            "place": TextInput(attrs={
-                'class': 'input-style',
-                'placeholder': '',
-                'value': '',
-                'readonly': 'readonly'
-            }),
-            "date_time": TextInput(attrs={
-                'class': 'input-style',
-                'placeholder': '',
-                'value': 'time.date_time',
-                'readonly': 'readonly'
-            }),
+            })
         }
+
