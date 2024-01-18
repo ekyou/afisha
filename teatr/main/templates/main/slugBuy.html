@@ -23,7 +23,7 @@
                             {% if price == None %}
                                 Бесплатно
                             {% else %}
-                                {{ ticket.price }}
+                                {{ price }}
                             {% endif %}</div>
                     </div>
                 <div class="text-info-slug"><a href="{% url 'tickets' show.id %}"><button class="button-style" >Купить билет</button></a></div>

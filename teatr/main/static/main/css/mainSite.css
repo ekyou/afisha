@@ -86,7 +86,7 @@ nav {
 .text-info{
     color: #ffffff;
     display: inline-block;
-    margin: 30px;
+    margin: 10px 0 10px 40px;
 }
 
 .input-style{
@@ -97,6 +97,10 @@ nav {
     margin: 10px 0 10px 40px;
     max-width: 200px;
     width: 100%;
+}
+
+.input-style:disabled{
+    opacity: 1;
 }
 
 .no-visible{

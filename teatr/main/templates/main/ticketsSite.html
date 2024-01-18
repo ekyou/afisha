@@ -28,16 +28,26 @@
                     <button class="button-style" type="submit" id="button-buy">Купить</button>
                 </div>
                 <div class="text-info-buy">
-                    <div class="">
+                    <div class="text-info">
+                        {{ tickets.name_concert }}
                         {{ form.concert }}
                     </div>
-                    <div class="">
-                        {{ form.date_time }}
+                    <div class="text-info">
+                        Дата: {{ tickets.date_time }}
+                    </div>
+                    <div class="text-info">
+                        {% if tickets.price == None %}
+                            Бесплатно
+                        {% else %}
+                            Цена: {{ tickets.price }}
+                        {% endif %}
+                    </div>
+                    <div class="text-info">
                         {{ form.place }}
                         {{ error }}
-                <div class="margin-select" id="select-or"></div>
+                    </div>
+                    <div class="text-info">Место: <div id="select-or"></div></div>
                 </div><br>
-                </div>
             </form>
         </div>
 

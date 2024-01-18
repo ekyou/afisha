@@ -32,7 +32,7 @@ def ticketsSite(request, concert_id):
                                'price': ticket.price})
 
     context = {
-        'ticket': ticket,
+        'tickets': ticket,
         'form': form,
         'error': error,
         'places_json': places_json

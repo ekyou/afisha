@@ -26,15 +26,20 @@ $('.zal1').html(cinemaHallMap);
 
 $('.seat').on('click', function() {
   $(this).toggleClass('bay').siblings().removeClass('bay');
+
   showBaySeat();
 });
 
 $('#id_place').addClass('input-style');
 $('#id_concert').addClass('input-style');
+$("#id_place").hide();
+$("#id_concert").hide();
 
 $('.seat').on('click', function(){
 let a = $(this).attr("value");
+let b = $(this).data().row + ' ряд ' + $(this).data().seat + ' место'
     $('#id_place').val(a).trigger('change');
+    $('#select-or').text(b).trigger('change');
 })
 /*$(item).data().row + ' ряд ' + $(item).data().seat + ' место'*/
 function showBaySeat() {
@@ -49,8 +54,5 @@ function showBaySeat() {
 }
 
 
-$('#button-buy').on(`click`, function() {
-    $('.bay').attr('disabled', true);
-    $('.bay').css('background-color', 'grey');
-})
+
 
