@@ -53,3 +53,4 @@ $('#button-buy').on(`click`, function() {
     $('.bay').attr('disabled', true);
     $('.bay').css('background-color', 'grey');
 })
+

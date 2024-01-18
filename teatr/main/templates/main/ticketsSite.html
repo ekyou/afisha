@@ -49,14 +49,18 @@
     <script src="{% static 'main/js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'main/js/ticketBuy.js' %}"></script>
     <script type="text/javascript">
-    var ds = document.querySelector('[class="seat"][value="1"]');
-    console.log(ds);
-    var pls = JSON.parse('{{ places_json|escapejs }}');
-    for(let i = 1; i < 101; i++){
-        for(var el in pls){
-            $('.seat').prop('disabled', true);
-        }
-    }
+    window.onload = function() {
+    var pls = {{ places_json }};
+    for(var el of pls){
+        $.each($('.seat'), function(){
+            var attr_el = $(this).attr("value");
+            if(attr_el == el[0]){
+                $(this).prop("disabled",true);
+                $(this).css('background-color', 'grey');
+            };
+        });
+    };
+    };
     </script>
 {% endblock %}
 
