@@ -24,7 +24,7 @@
                     {% csrf_token %}
                     {{ form.first_name }}<br>
                     {{ form.last_name }}<br>
-                    <input class="input-style" type="text" placeholder="Номер карты" name="Карта"><br>
+                    <input class="input-style" type="text" placeholder="Номер карты" name="Карта" required><br>
                     <button class="button-style" type="submit" id="button-buy">Купить</button>
                 </div>
                 <div class="text-info-buy">
@@ -33,9 +33,7 @@
                     </div>
                     <div class="">
                         {{ form.date_time }}
-                        <div class="input-style">
                         {{ form.place }}
-                        </div>
                         {{ error }}
                 <div class="margin-select" id="select-or"></div>
                 </div><br>
@@ -47,6 +45,19 @@
         <div class='cinemaHall zal1'></div>
         <div id="block-info" class="block-info"></div>
     </div>
+
+    <script src="{% static 'main/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'main/js/ticketBuy.js' %}"></script>
+    <script type="text/javascript">
+    var ds = document.querySelector('[class="seat"][value="1"]');
+    console.log(ds);
+    var pls = JSON.parse('{{ places_json|escapejs }}');
+    for(let i = 1; i < 101; i++){
+        for(var el in pls){
+            $('.seat').prop('disabled', true);
+        }
+    }
+    </script>
 {% endblock %}
 
 {% block zal %}

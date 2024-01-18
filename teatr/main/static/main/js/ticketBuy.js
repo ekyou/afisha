@@ -3,7 +3,7 @@ var cinemaHall1 = {
   },
   cinemaHallMap = '';
 var rows = 1;
-var count = 0;
+var count = 1;
 var rowsHallMap = '';
 var buyButton = document.querySelector(`#button-buy`);
 
@@ -30,11 +30,11 @@ $('.seat').on('click', function() {
 });
 
 $('#id_place').addClass('input-style');
+$('#id_concert').addClass('input-style');
 
 $('.seat').on('click', function(){
 let a = $(this).attr("value");
     $('#id_place').val(a).trigger('change');
-    console.log(a);
 })
 /*$(item).data().row + ' ряд ' + $(item).data().seat + ' место'*/
 function showBaySeat() {
@@ -47,6 +47,7 @@ function showBaySeat() {
 
   $('.result').html(result);
 }
+
 
 $('#button-buy').on(`click`, function() {
     $('.bay').attr('disabled', true);

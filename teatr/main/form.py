@@ -21,9 +21,6 @@ class ticketForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'concert', 'place']
 
         widgets = {
-            "place": forms.Select(attrs={
-                'class': 'input-style'
-            }),
             "first_name": TextInput(attrs={
                 'class': 'input-style',
                 'placeholder': 'Имя'
@@ -31,12 +28,6 @@ class ticketForm(forms.ModelForm):
             "last_name": TextInput(attrs={
                 'class': 'input-style',
                 'placeholder': 'Фамилия'
-            }),
-            "concert": Textarea(attrs={
-                'class': 'input-style no-visible',
-                'placeholder': '',
-                'value': 'ticket.concert_name',
-                'readonly': 'readonly'
             })
         }
 

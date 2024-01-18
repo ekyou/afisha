@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Concert, Time
+from .models import Concert, Ticket
 from .form import ticketForm
+
+from django.core.serializers.json import DjangoJSONEncoder
+import json
 
 
 def mainSite(request):
@@ -22,13 +25,17 @@ def ticketsSite(request, concert_id):
 
     ticket = get_object_or_404(Concert, id=concert_id)
 
+    tickets_places = Ticket.objects.filter(concert=concert_id).values_list('place')
+    places_json = json.dumps(list(tickets_places), cls=DjangoJSONEncoder)
+
     form = ticketForm(initial={'concert': ticket.id,
                                'price': ticket.price})
 
     context = {
         'ticket': ticket,
         'form': form,
-        'error': error
+        'error': error,
+        'places_json': places_json
     }
 
     return render(request, 'main/ticketsSite.html', context=context)
